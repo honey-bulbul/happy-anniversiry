@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Years of Love - Our Anniversary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Parisienne&family=Pinyon+Script&family=Style+Script&family=Satisfy&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background with gradient animation */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(30deg, #040405, #16213e, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating hearts in background */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            animation: floatUp 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music player */
+
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .music-title {
+            font-size: 14px;
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+            font-family: 'Satisfy', cursive;
+            color: #ffebee;
+            letter-spacing: 2px;
+        }
+
+        .hero h1:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+            bottom: -10px;
+            left: 0;
+            border-radius: 5px;
+        }
+
+        .heart-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .big-heart {
+            font-size: 80px;
+            color: #ff4081;
+            animation: heartbeat 1.5s ease infinite;
+            text-shadow: 0 0 30px rgba(255, 64, 129, 0.9);
+            filter: drop-shadow(0 0 10px rgba(255, 64, 129, 0.5));
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .anniversary-date {
+            font-size: 2.2rem;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* FIXED Countdown timer - Now clearly visible */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 25px 20px;
+            min-width: 140px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff4081, #ff79a6, #ff4081);
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .countdown-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(255, 64, 129, 0.9), 0 0 50px rgba(255, 64, 129, 0.5), 0 0 5px rgba(0, 0, 0, 0.8);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #ffffff;
+            font-family: 'Satisfy', cursive;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Content section */
+        .content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 80px auto;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            line-height: 2;
+            font-size: 1.3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff79a6, #ff4081);
+        }
+
+        .content p {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .highlight {
+            color: #ffebee;
+            text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
+            font-weight: bold;
+            font-size: 1.4rem;
+            font-family: 'Dancing Script', cursive;
+            position: relative;
+            display: inline-block;
+            padding: 0 5px;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff79a6, transparent);
+        }
+
+        /* Love button section */
+        .love-button-section {
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .love-btn {
+            background: linear-gradient(45deg, #ff4081, #ff79a6, #ff4081);
+            background-size: 200% 200%;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            padding: 25px 60px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 15px 30px rgba(255, 64, 129, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonGlow 2s infinite alternate;
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 15px 30px rgba(255, 64, 129, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 15px 40px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.4);
+            }
+        }
+
+        .love-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.7);
+            background-position: right center;
+        }
+
+        .love-btn:hover::before {
+            left: 100%;
+        }
+
+        .love-btn:active {
+            transform: translateY(0);
+        }
+
+        .message-display {
+            min-height: 150px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .love-emoji {
+            font-size: 4rem;
+            animation: popIn 0.5s ease forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 8px rgba(255, 64, 129, 0.7));
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.3) rotate(10deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Shooting hearts from top */
+        .shooting-heart {
+            position: fixed;
+            font-size: 30px;
+            color: #ff4081;
+            z-index: 1000;
+            pointer-events: none;
+            filter: drop-shadow(0 0 5px rgba(255, 64, 129, 0.7));
+        }
+
+        /* Gallery section */
+        .gallery {
+            margin: 100px 0;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            color: #ffebee;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Satisfy', cursive;
+            letter-spacing: 2px;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-item {
+            width: 320px;
+            height: 320px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.5s;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-20px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 1.3rem;
+            transform: translateY(100%);
+            transition: transform 0.5s;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .gallery-item:hover .image-label {
+            transform: translateY(0);
+        }
+
+        /* Memory Timeline */
+        .timeline {
+            margin: 100px auto;
+            max-width: 900px;
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff79a6, #ff4081);
+        }
+
+        .timeline h2 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            font-family: 'Satisfy', cursive;
+            color: #ffebee;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .timeline h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff79a6, transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background: #ff4081;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.7);
+            border: 3px solid white;
+            z-index: 2;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 30px;
+            width: 3px;
+            height: calc(100% + 40px);
+            background: linear-gradient(to bottom, #ff4081, #ff79a6);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-year {
+            font-size: 2.8rem;
+            font-family: 'Playfair Display', serif;
+            color: #ff4081;
+            min-width: 150px;
+            text-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+            font-weight: bold;
+            position: relative;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            margin-right: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content {
+            padding: 25px 35px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            flex-grow: 1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff4081, #ff79a6);
+        }
+
+        .timeline-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffebee;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .timeline-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Playfair Display', serif;
+            padding-left: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 130px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff79a6, #ff4081);
+        }
+
+        .final-message {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffebee;
+            font-family: 'Satisfy', cursive;
+            letter-spacing: 3px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .big-heart {
+                font-size: 50px;
+            }
+
+            .anniversary-date {
+                font-size: 1.5rem;
+                padding: 15px 25px;
+            }
+
+            .countdown-item {
+                min-width: 100px;
+                padding: 20px 15px;
+            }
+
+            .countdown-value {
+                font-size: 2.5rem;
+            }
+
+            .content {
+                padding: 30px;
+                font-size: 1.1rem;
+            }
+
+            .love-btn {
+                font-size: 1.5rem;
+                padding: 20px 40px;
+            }
+
+            .gallery-item {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .gallery h2 {
+                font-size: 2.5rem;
+            }
+
+            .timeline {
+                padding: 20px;
+            }
+
+            .timeline h2 {
+                font-size: 2.2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-year {
+                margin-bottom: 10px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                padding-bottom: 10px;
+                width: 100%;
+            }
+
+            .timeline-content {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .music-player {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .music-title {
+                max-width: 100px;
+            }
+        }
+
+        /* Urdu Poetry Section */
+        .poetry-section-urdu {
+            margin: 100px auto;
+            padding: 60px 0;
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .poetry-urdu-title {
+            font-size: 4rem;
+            color: #ffebee;
+            font-family: 'Satisfy', cursive;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .poetry-urdu-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 60px;
+            font-family: 'Dancing Script', cursive;
+            letter-spacing: 2px;
+        }
+
+        .poetry-boxes-urdu {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .poetry-box-urdu {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            width: 350px;
+            min-height: 420px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .poetry-box-urdu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff79a6, #ff4081);
+        }
+
+        .poetry-box-urdu:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .box-urdu-icon {
+            font-size: 3.5rem;
+            color: #ff4081;
+            margin-bottom: 20px;
+            text-shadow: 0 0 25px rgba(255, 64, 129, 0.7);
+            animation: gentleFloat 3s infinite ease-in-out;
+        }
+
+        .box-urdu-title {
+            font-size: 2.5rem;
+            color: #ffebee;
+            font-family: 'Satisfy', cursive;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .box-urdu-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff79a6, transparent);
+        }
+
+        .box-urdu-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        /* Urdu Text Styling */
+        .urdu-line {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+            font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+            direction: rtl;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .love-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+        }
+
+        /* Heart Row for Pashto Poem */
+        .heart-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .heart-row i {
+            color: #ff4081;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
+            animation: heartPulse 1.5s infinite;
+        }
+
+        .heart-row i:nth-child(2n) {
+            animation-delay: 0.3s;
+        }
+
+        .heart-row i:nth-child(3n) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes heartPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Separator */
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .separator .line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff79a6, transparent);
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .separator .heart {
+            color: #ff4081;
+            font-size: 1.2rem;
+            animation: spin 3s infinite linear;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Translation Styling */
+        .translation {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 3px solid #ff79a6;
+        }
+
+        .translation p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+        }
+
+        /* Heart Animation for Third Box */
+        .heart-animation {
+            position: relative;
+            height: 80px;
+            margin: 20px 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff4081;
+            opacity: 0.7;
+            animation: floatAround 6s infinite linear;
+        }
+
+        .floating-heart:nth-child(1) {
+            left: 25%;
+            animation-delay: 0s;
+        }
+
+        .floating-heart:nth-child(2) {
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        .floating-heart:nth-child(3) {
+            left: 75%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+
+            25% {
+                transform: translateY(-20px) rotate(90deg) scale(1.2);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg) scale(1);
+                opacity: 0.7;
+            }
+
+            75% {
+                transform: translateY(20px) rotate(270deg) scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg) scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        .final-line {
+            font-size: 1.8rem;
+            color: #ffebee;
+            font-family: 'Satisfy', cursive;
+            margin-top: 15px;
+            text-shadow: 0 0 15px rgba(255, 64, 129, 0.5);
+        }
+
+        .box-urdu-footer {
+            font-size: 1.3rem;
+            color: #ff79a6;
+            padding: 10px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Satisfy', cursive;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+
+        /* Hover Effects */
+        .poetry-box-urdu:hover .box-urdu-icon {
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Add Urdu font import */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .poetry-boxes-urdu {
+                gap: 30px;
+            }
+
+            .poetry-box-urdu {
+                width: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .poetry-section-urdu {
+                padding: 40px 15px;
+                margin: 60px auto;
+            }
+
+            .poetry-urdu-title {
+                font-size: 3rem;
+            }
+
+            .poetry-urdu-subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 40px;
+            }
+
+            .poetry-boxes-urdu {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .poetry-box-urdu {
+                width: 100%;
+                max-width: 400px;
+                min-height: 400px;
+            }
+
+            .urdu-line {
+                font-size: 1.4rem;
+            }
+
+            .love-message {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background with gradient -->
+    <div class="background"></div>
+
+    <!-- Floating hearts -->
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <!-- Music player -->
+    <div class="music-player">
+        <button class="music-btn" id="playBtn">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="music-title">Love Song - Anniversary Special</div>
+        <audio id="bgMusic" loop>
+            <source src="./song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="container">
+        <!-- Hero section -->
+        <section class="hero">
+            <h1>Happy 3rd anniversary my Ayshu</h1>
+            <div class="heart-container">
+                <div class="big-heart"><i class="fas fa-heart"></i></div>
+                <div class="big-heart" style="animation-delay: 0.5s"><i class="fas fa-heart"></i></div>
+                <div class="big-heart" style="animation-delay: 1s"><i class="fas fa-heart"></i></div>
+            </div>
+            <div class="anniversary-date" id="anniversaryDate"></div>
+
+            <!-- Countdown timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="years">3</div>
+                    <div class="countdown-label">Years</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="months">0</div>
+                    <div class="countdown-label">Months</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <!-- <div class="countdown-item">
+                    <div class="countdown-value" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Content section -->
+        <section class="content">
+            <p><span class="highlight">شہزادی</span>میری</p>
+            <p>
+                آج ہماری محبت کے سفر کے تین حسین اور یادگار سال مکمل ہو گئے ہیں
+                ہائے… وہ دن میری زندگی کا <span class="highlight">سب سے خوبصورت ترین دن</span> تھا جب تم نے مجھ سے پہلی
+                دفعہ محبت کا اظہار کیا اور کہا
+                <span class="highlight">"موٹا تا خوٖند روکا وی"</span>۔ مجھے یہ جملہ بے حد پسند ہے۔ اس لمحے مجھے ایسا
+                محسوس ہوا جیسے مجھے اسی دنیا میں
+                <span class="highlight">جنت مل گئی ہو</span>۔
+            </p>
+
+            <p>
+                مجھے تمہارے ساتھ گزارا ہوا <span class="highlight">ہر لمحہ</span> آج بھی ویسے ہی یاد آتا ہے جیسے وہ کل
+                کی بات ہو۔ جب بھی میں تمہارے بارے میں سوچتا ہوں تو میرے اردگرد کی ہر چیز جیسے خاموش ہو جاتی ہے اور صرف
+                <span class="highlight">تمہاری یادیں</span> بولنے لگتی ہیں۔ تمہاری مسکراہٹ، تمہاری باتیں اور تمہاری
+                موجودگی میرے دل کو ایسا
+                <span class="highlight">سکون</span> دیتی ہیں جو شاید کسی اور چیز میں نہیں مل سکتا۔
+            </p>
+
+            <p>
+                کبھی کبھی مجھے ایسا محسوس ہوتا ہے جیسے مجھے اس دنیا میں صرف
+                <span class="highlight">تمہاری محبت پانے کے لیے</span> بھیجا گیا ہو — اللہ مجھے معاف فرمائے، مگر تمہاری
+                محبت میرے لیے سب کچھ ہے۔
+                میری جان، تم میری زندگی کا <span class="highlight">سب سے پہلا مقصد</span> ہو۔ تمہارے بغیر زندگی کا تصور
+                بھی ادھورا لگتا ہے۔
+            </p>
+
+            <p>
+                مجھے تمہارے علاوہ کچھ نہیں چاہیے، بس زندگی بھر
+                <span class="highlight">تمہارا ساتھ</span> چاہیے۔ میں چاہتا ہوں کہ ہم ہر خوشی، ہر مشکل، ہر خواب اور ہر
+                سفر ایک ساتھ طے کریں۔
+                میں چاہتا ہوں کہ جب بھی میں زندگی کے کسی موڑ پر رکوں تو میرا ہاتھ تمہارے ہاتھ میں ہو، اور جب بھی میں
+                مسکراؤں تو اس کی وجہ صرف
+                <span class="highlight">تم</span> ہو۔
+            </p>
+
+            <p>
+                میری دعا ہے کہ ہماری محبت ہمیشہ اسی طرح
+                <span class="highlight">پاک، سچی اور مضبوط</span> رہے، اور ہم زندگی کے ہر موسم میں ایک دوسرے کے لیے سکون
+                اور خوشی کا باعث بنتے رہیں۔
+                تم میری <span class="highlight">سب سے خوبصورت حقیقت</span> ہو، اور میں تمہیں ہمیشہ اسی طرح چاہتا رہوں
+                گا۔
+            </p>
+
+            Happy <span class="highlight">3rd anniversary</span>, my love!</p>
+        </section>
+
+        <!-- Love button section -->
+        <section class="love-button-section">
+            <button class="love-btn" id="loveBtn">
+                <i class="fas fa-heart"></i> Click for More Love
+            </button>
+            <div class="message-display" id="messageDisplay"></div>
+        </section>
+
+        <!-- Memory Timeline -->
+        <section class="timeline" id="timeline">
+            <h2>Our Journey Together</h2>
+            <div class="timeline-item" id="year1">
+                <div class="timeline-year">Year 1</div>
+                <div class="timeline-content">
+                    <h3>Beginning year</h3>
+                    <p>
+                        Hamaraa pehla saal <span class="highlight">muskurahaton</span> aur
+                        <span class="highlight">gehri mohabbat</span> se bhara hua tha ❤️
+                        Har lamha <span class="highlight">jadoo</span> jaisa tha,
+                        jab hum aik doosray ke <span class="highlight">khwabon</span> ko samajhte gaye
+                        aur <span class="highlight">dil se kareeb</span> hote gaye 💖✨
+                    </p>
+
+                </div>
+            </div>
+            <div class="timeline-item" id="year2">
+                <div class="timeline-year">Year 2</div>
+                <div class="timeline-content">
+                    <h3>Sad year</h3>
+                    <p>Is saal <span class="highlight">tum</span> ne mujhe <span class="highlight">akela</span> chhor
+                        diya tha meri <span class="highlight">jaan</span> 💔
+                        Main poora saal <span class="highlight">tum se baat</span> aur tumhare ek
+                        <span class="highlight">SMS</span> ke liye tarasta raha 📩🥺
+
+                        Har din na jaane kitni dafa <span class="highlight">mobile</span> check karta tha 📱
+                        ke shayad tumhara <span class="highlight">paighaam</span> aa jaye… 😔
+                        ke <span class="highlight">tum</span> bhi mere baghair <span class="highlight">sukoon</span>
+                        mehsoos nahi karti 💭❤️
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item" id="year3">
+                <div class="timeline-year">Year 3</div>
+                <div class="timeline-content">
+                    <h3>Lovely year</h3>
+                    <p>Bas is saal <span class="highlight">tum</span> ne mujhe be-had khush kiya ❤️
+                        <span class="highlight">Tum</span> ne mere dil ke har <span class="highlight">khowab</span> ko
+                        haqeeqat bana diya ✨
+
+                        Hayee… woh <span class="highlight">raat</span> kitni haseen aur romantic thi jab <span
+                            class="highlight">tum</span> aayi thi 🌙💞
+                        Jab main <span class="highlight">tumhare paas</span> aaya, woh <span
+                            class="highlight">lamhe</span> itne pur-sukoon the ke waqt jaise tham sa gaya tha 🫶
+
+                        Aur paper ka woh <span class="highlight">din</span>… mujhe aaj bhi ek khoobsurat <span
+                            class="highlight">khwaab</span> lagta hai 💭💕
+                        jab <span class="highlight">tum</span> meri <span class="highlight">baahon</span> mein thi 🤍
+                        .
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poetry Section - Our Love in Words -->
+        <section class="poetry-section-urdu">
+            <h2 class="poetry-urdu-title">My Feelings for You</h2>
+            <div class="poetry-urdu-subtitle">Words from my heart, in every language</div>
+
+            <div class="poetry-boxes-urdu">
+                <!-- Box 1 - Urdu Poetry -->
+                <div class="poetry-box-urdu" id="urdu-poem-1">
+                    <div class="box-urdu-icon"><i class="fas fa-heart"></i></div>
+                    <h3 class="box-urdu-title">میرا سکون</h3>
+                    <div class="box-urdu-content">
+                        <p class="urdu-line">تو <span class="highlight">خیال</span> رکھا کر اپنا 🤍 </p>
+                        <p class="urdu-line">تو <span class="highlight">شہزادی</span> ہے میری 👑❤️</p>
+                        <p class="urdu-line">تو میرے <span class="highlight">دل کی ہر خواہش</span></p>
+                        <p class="urdu-line">اور <span class="highlight">آخری محبت</span> ہے میری 💕</p>
+                        
+                        <div class="separator">
+                            <div class="line"></div>
+                            <div class="heart"><i class="fas fa-heart"></i></div>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 2 - Pashto Poetry -->
+                <div class="poetry-box-urdu" id="urdu-poem-2">
+                    <div class="box-urdu-icon"><i class="fas fa-star"></i></div>
+                    <h3 class="box-urdu-title">زما زړه</h3>
+                    <div class="box-urdu-content">
+                        <p class="urdu-line">ہائے ما پہ <span class="highlight">ګپ</span> کې ورته اوی اودہ کیگم  </p>
+                        <p class="urdu-line">دا په دې مانۀ <span class="highlight">خفه</span> ده، څومره ښه ده ❤️ </p>
+                        <p class="urdu-line"><span class="highlight">يو ته خفه يې</span> او زه داسې يمه  </p>
+                        <p class="urdu-line">لکه زما نه چې <span class="highlight">دنیا خفه</span> وي 🌎🥀</p>
+                        <div class="heart-row">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="separator">
+                            <div class="line"></div>
+                            <div class="heart"><i class="fas fa-heart"></i></div>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 3 - Love Message -->
+                <div class="poetry-box-urdu" id="urdu-poem-3">
+                    <div class="box-urdu-icon"><i class="fas fa-moon"></i></div>
+                    <h3 class="box-urdu-title">My life</h3>
+                    <div class="box-urdu-content">
+                        <p class="love-message"><span class="highlight">You</span> came into my <span class="highlight">life</span> one day,</p>
+                        <p class="love-message">And took my <span class="highlight">loneliness</span> away 🤍 </p>
+                        <p class="love-message">Your <span class="highlight">smile</span> makes my dark days <span class="highlight">bright</span> ✨  </p>
+                        <p class="love-message">You are my <span class="highlight">peace</span>, my <span class="highlight">heart</span>, my <span class="highlight">light</span> ❤️
+</p></p>
+                        <div class="separator">
+                            <div class="line"></div>
+                            <div class="heart"><i class="fas fa-heart"></i></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="heart-animation">
+                            <div class="floating-heart"><i class="fas fa-heart"></i></div>
+                            <div class="floating-heart"><i class="fas fa-heart"></i></div>
+                            <div class="floating-heart"><i class="fas fa-heart"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery section -->
+        <section class="gallery">
+            <h2>Our Precious Memories</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="pic2.jpg"
+                        alt="Romantic couple">
+                    <div class="image-label">Our First Year Together</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="pic3.jpg"
+                        alt="Celebrating love">
+                    <div class="image-label">Special Moments</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="pic1.jpg"
+                        alt="Beautiful sunset">
+                    <div class="image-label">Dreaming of Forever</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="final-message"><span class="highlight">چھوٹا سا تحفہ🎁 </span> کے لیے <span class="highlight">👑چھوٹی سی شہزادی</span>
+</div>
+            <p>Made with <i class="fas fa-heart" style="color:#ff4081;"></i> for our 3rd Anniversary</p>
+        </footer>
+    </div>
+
+    <script>
+        const anniversaryDate = new Date(2023, 1, 6, 21, 0, 0); // Year 2023, Month 1 (February), Day 2
+
+        // Display anniversary date
+        document.getElementById('anniversaryDate').textContent =
+            `Since: ${anniversaryDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })}`;
+
+        // SIMPLE AND WORKING Countdown timer
+        function updateCountdown() {
+            const now = new Date();
+
+            // Calculate total difference in milliseconds
+            const diff = now - anniversaryDate;
+
+            // Calculate years
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+
+            // Calculate remaining time after years
+            const yearsInMs = years * 365.25 * 24 * 60 * 60 * 1000;
+            const remainingAfterYears = diff - yearsInMs;
+
+            // Calculate months (approx 30.44 days per month)
+            const months = Math.floor(remainingAfterYears / (1000 * 60 * 60 * 24 * 30.44));
+
+            // Calculate remaining time after months
+            const monthsInMs = months * 30.44 * 24 * 60 * 60 * 1000;
+            const remainingAfterMonths = remainingAfterYears - monthsInMs;
+
+            // Calculate days
+            const days = Math.floor(remainingAfterMonths / (1000 * 60 * 60 * 24));
+
+            // Calculate remaining time after days
+            const daysInMs = days * 24 * 60 * 60 * 1000;
+            const remainingAfterDays = remainingAfterMonths - daysInMs;
+
+            // Calculate hours
+            const hours = Math.floor(remainingAfterDays / (1000 * 60 * 60));
+
+            // Update display with animation
+            gsap.to("#years", { duration: 0.5, textContent: years, snap: { textContent: 1 } });
+            gsap.to("#months", { duration: 0.5, textContent: months, snap: { textContent: 1 } });
+            gsap.to("#days", { duration: 0.5, textContent: days, snap: { textContent: 1 } });
+            gsap.to("#hours", { duration: 0.5, textContent: hours, snap: { textContent: 1 } });
+        }
+
+        // Background gradient colors
+        // const gradientColors = [
+        //     // 'linear-gradient(30deg, #ff6b95, #ff8ea1, #ffa8b8)',
+        //     // 'linear-gradient(30deg, #ff7eb3, #ff9ac9, #ffb6d9)',
+        //     // 'linear-gradient(30deg, #e83e8c, #f06292, #f48fb1)',
+        //     'linear-gradient(30deg, #d81b60, #e91e63, #ec407a)',
+        //     // 'linear-gradient(30deg, #ff5722, #ff7043, #ff8a65)',
+        //     // 'linear-gradient(30deg, #ff4081, #ff79a6, #ff4081)',
+        //     // 'linear-gradient(30deg, #d46c8e, #e87ea1, #f592b5)',
+        //     'linear-gradient(30deg, #ad1457, #c2185b, #d81b60)'
+        // ];
+
+        // Change background gradient every 5 seconds
+        let currentColorIndex = 0;
+        const backgroundEl = document.querySelector('.background');
+
+        function changeBackgroundGradient() {
+            currentColorIndex = (currentColorIndex + 1) % gradientColors.length;
+            gsap.to(backgroundEl, {
+                background: gradientColors[currentColorIndex],
+                duration: 3,
+                ease: "power2.inOut"
+            });
+        }
+
+        setInterval(changeBackgroundGradient, 5000);
+
+        // Create floating hearts
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartCount = 40;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+
+                const size = Math.random() * 25 + 15;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 20;
+                const opacity = Math.random() * 0.5 + 0.3;
+
+                heart.style.fontSize = `${size}px`;
+                heart.style.left = `${left}vw`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.opacity = opacity;
+
+                const colors = ['#ff4081', '#ff79a6', '#ffebee', '#ff8ea1', '#ffb6d9'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Function to create shooting hearts from the top
+        function createShootingHearts() {
+            const heartCount = 30;
+            const container = document.body;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('shooting-heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+
+                const startX = Math.random() * window.innerWidth;
+                const endX = startX + (Math.random() * 200 - 100);
+                const size = Math.random() * 25 + 20;
+                const duration = Math.random() * 1.5 + 1;
+                const delay = Math.random() * 0.5;
+
+                heart.style.fontSize = `${size}px`;
+                heart.style.left = `${startX}px`;
+                heart.style.top = `-50px`;
+
+                const colors = ['#ff4081', '#ff79a6', '#ffebee', '#ff8ea1'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+                container.appendChild(heart);
+
+                gsap.to(heart, {
+                    top: window.innerHeight + 50,
+                    left: endX,
+                    rotation: Math.random() * 360,
+                    duration: duration,
+                    delay: delay,
+                    ease: "power1.out",
+                    onComplete: () => heart.remove()
+                });
+            }
+        }
+
+        // Music player functionality
+        const bgMusic = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = playBtn.querySelector('i');
+
+        playBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            } else {
+                bgMusic.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            }
+        });
+
+        // Auto-play music
+        document.addEventListener('click', function initAudio() {
+            if (bgMusic.paused) {
+                bgMusic.volume = 0.6;
+                bgMusic.play().then(() => {
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                }).catch(e => console.log("Auto-play prevented:", e));
+            }
+            document.removeEventListener('click', initAudio);
+        });
+
+        // Love button functionality
+        const loveBtn = document.getElementById('loveBtn');
+        const messageDisplay = document.getElementById('messageDisplay');
+        const loveMessages = [
+            "You are my everything, today and always! 💖",
+            "My heart beats only for you! 💘",
+            "You are the love of my life! 💗",
+            "I love you meri bul bul 💝",
+        ];
+
+        loveBtn.addEventListener('click', () => {
+            createShootingHearts();
+            messageDisplay.innerHTML = '';
+
+            for (let i = 0; i < 7; i++) {
+                const heartEmoji = document.createElement('div');
+                heartEmoji.classList.add('love-emoji');
+                heartEmoji.textContent = ['❤️', '💖', '💘', '💕', '💗', '💓', '💞'][i];
+                heartEmoji.style.animationDelay = `${i * 0.1}s`;
+                messageDisplay.appendChild(heartEmoji);
+
+                gsap.to(heartEmoji, {
+                    y: -30,
+                    rotation: Math.random() * 360,
+                    duration: 1.5,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
+
+            const message = document.createElement('div');
+            message.style.fontSize = '2rem';
+            message.style.marginTop = '30px';
+            message.style.width = '100%';
+            message.style.fontFamily = "'Dancing Script', cursive";
+            message.style.color = '#ffebee';
+            message.style.textShadow = '0 0 10px rgba(255, 64, 129, 0.7)';
+            messageDisplay.appendChild(message);
+
+            const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            gsap.to(message, {
+                duration: 2,
+                text: randomMessage,
+                ease: "power4.out",
+                delay: 0.5
+            });
+
+            gsap.to(loveBtn, {
+                scale: 1.2,
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1,
+                ease: "elastic.out(1, 0.5)"
+            });
+
+            for (let i = 0; i < 10; i++) {
+                const miniHeart = document.createElement('div');
+                miniHeart.innerHTML = '<i class="fas fa-heart"></i>';
+                miniHeart.style.position = 'absolute';
+                miniHeart.style.color = '#ff4081';
+                miniHeart.style.fontSize = '20px';
+                miniHeart.style.zIndex = '100';
+                miniHeart.style.left = `${loveBtn.offsetLeft + loveBtn.offsetWidth / 2}px`;
+                miniHeart.style.top = `${loveBtn.offsetTop + loveBtn.offsetHeight / 2}px`;
+                document.body.appendChild(miniHeart);
+
+                gsap.to(miniHeart, {
+                    x: Math.random() * 200 - 100,
+                    y: Math.random() * -150 - 50,
+                    rotation: Math.random() * 360,
+                    opacity: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    onComplete: () => miniHeart.remove()
+                });
+            }
+        });
+
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createFloatingHearts();
+            updateCountdown(); // Initialize countdown
+
+            // Update countdown every second for smooth updates
+            setInterval(updateCountdown, 1000);
+
+            // Animations
+            gsap.from('.hero h1', {
+                duration: 2,
+                y: 100,
+                opacity: 0,
+                ease: 'power4.out',
+                delay: 0.5
+            });
+
+            gsap.from('.big-heart', {
+                scrollTrigger: { trigger: '.hero', start: 'top 80%' },
+                duration: 1.5,
+                scale: 0,
+                opacity: 0,
+                stagger: 0.5,
+                ease: 'elastic.out(1, 0.5)'
+            });
+
+            gsap.from('.anniversary-date', {
+                duration: 1.5,
+                y: 30,
+                opacity: 0,
+                delay: 1,
+                ease: 'power3.out'
+            });
+
+            gsap.to(".countdown-item", {
+                y: -18,
+                duration: 2.5,              // slow = smooth
+                ease: "sine.inOut",
+                yoyo: true,
+                repeat: -1,
+                stagger: {
+                    each: 0.3,
+                    from: "center"
+                }
+            });
+
+            gsap.from('.content', {
+                scrollTrigger: { trigger: '.content', start: 'top 85%' },
+                duration: 1.5,
+                y: 80,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+
+            gsap.from('.highlight', {
+                scrollTrigger: { trigger: '.content', start: 'top 70%', toggleActions: 'play none none reverse' },
+                duration: 1,
+                scale: 0,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'back.out(1.7)'
+            });
+
+            gsap.from('.gallery-item', {
+                scrollTrigger: { trigger: '.gallery', start: 'top 80%' },
+                duration: 1.2,
+                y: 120,
+                opacity: 0,
+                stagger: 0.4,
+                ease: 'power3.out'
+            });
+
+            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+                gsap.to(item, {
+                    scrollTrigger: { trigger: item, start: 'top 85%', end: 'bottom 60%' },
+                    duration: 1.2,
+                    y: 0,
+                    opacity: 1,
+                    delay: i * 0.3,
+                    ease: 'power3.out'
+                });
+            });
+
+            gsap.set('.timeline-item', { opacity: 0, y: 50 });
+
+            setInterval(() => {
+                gsap.to(loveBtn, {
+                    scale: 1.05,
+                    duration: 0.8,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: "power1.inOut"
+                });
+            }, 4000);
+
+            gsap.from('.final-message', {
+                scrollTrigger: { trigger: 'footer', start: 'top 90%' },
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+
+            gsap.to('.hero h1', {
+                duration: 3,
+                y: '+=10',
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        });
+
+        // Add this to your existing JavaScript
+
+        // Urdu Poetry Box Animations
+        function initUrduPoetryBoxes() {
+            const poetryBoxes = document.querySelectorAll('.poetry-box-urdu');
+
+            // Add scroll animation for boxes
+            poetryBoxes.forEach((box, index) => {
+                gsap.from(box, {
+                    scrollTrigger: {
+                        trigger: box,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    duration: 1,
+                    y: 60,
+                    opacity: 0,
+                    delay: index * 0.3,
+                    ease: 'power3.out'
+                });
+
+                // Add floating hearts on hover
+                box.addEventListener('mouseenter', function () {
+                    // Animate the title
+                    gsap.to(this.querySelector('.box-urdu-title'), {
+                        y: -5,
+                        duration: 0.3,
+                        color: '#ffebee',
+                        textShadow: '0 0 20px rgba(255, 64, 129, 0.8)'
+                    });
+
+                    // Create mini floating hearts
+                    for (let i = 0; i < 8; i++) {
+                        const heart = document.createElement('div');
+                        heart.innerHTML = '<i class="fas fa-heart"></i>';
+                        heart.style.position = 'absolute';
+                        heart.style.color = '#ff4081';
+                        heart.style.fontSize = '18px';
+                        heart.style.zIndex = '10';
+                        heart.style.left = `${Math.random() * 80 + 10}%`;
+                        heart.style.top = `${Math.random() * 80 + 10}%`;
+                        heart.style.opacity = '0';
+                        this.appendChild(heart);
+
+                        gsap.to(heart, {
+                            y: -40,
+                            x: Math.random() * 40 - 20,
+                            opacity: 0.8,
+                            duration: 1.2,
+                            ease: 'power2.out',
+                            onComplete: () => heart.remove()
+                        });
+                    }
+                });
+
+                box.addEventListener('mouseleave', function () {
+                    gsap.to(this.querySelector('.box-urdu-title'), {
+                        y: 0,
+                        duration: 0.3,
+                        color: '#ffebee',
+                        textShadow: '0 5px 15px rgba(0, 0, 0, 0.3)'
+                    });
+                });
+            });
+
+            // Animate heart rows
+            const heartIcons = document.querySelectorAll('.heart-row i');
+            heartIcons.forEach((heart, index) => {
+                gsap.to(heart, {
+                    scale: 1.2,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'power1.inOut'
+                });
+            });
+        }
+
+        // Call this function in your DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', () => {
+            // ... your existing code ...
+
+            // Initialize Urdu poetry boxes
+            initUrduPoetryBoxes();
+
+            // ... rest of your code ...
+        });
+    </script>
+</body>
+
+</html>
